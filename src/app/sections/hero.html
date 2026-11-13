@@ -1,0 +1,77 @@
+<section id="top" aria-labelledby="hero-title" class="flex min-h-[780px] flex-col">
+  <div
+    class="mx-auto flex w-full max-w-[1440px] grow flex-wrap items-center gap-12 px-6 pt-8 pb-16 md:px-16"
+  >
+    <div class="flex min-w-0 flex-[1_1_480px] flex-col gap-7">
+      <ul class="flex flex-wrap gap-3 font-pixel text-[13px]">
+        <li class="rounded-md border border-steel bg-surface px-3 py-2">{{ profile.level }}</li>
+        <li class="rounded-md border border-steel bg-surface px-3 py-2">{{ profile.city }}</li>
+      </ul>
+      <h1
+        id="hero-title"
+        class="text-5xl leading-[1.05] font-bold tracking-tighter break-words md:text-7xl"
+      >
+        {{ profile.name }}
+      </h1>
+      <p class="max-w-[560px] text-xl leading-relaxed text-cream-dim md:text-2xl">
+        {{ profile.tagline }}
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a
+          href="#projects"
+          class="inline-flex min-h-13 items-center rounded-lg bg-cream px-7 font-semibold text-space hover:bg-sky"
+          >View projects</a
+        >
+        <a
+          href="#contact"
+          class="inline-flex min-h-13 items-center rounded-lg border border-steel bg-space px-7 font-semibold hover:border-sky hover:text-sky"
+          >Let's talk</a
+        >
+      </div>
+    </div>
+
+    <div class="flex min-w-0 flex-[1_1_380px] justify-center">
+      <svg
+        role="img"
+        aria-label="A person lying back in the curve of a crescent moon, relaxed and thinking, with a star above their head"
+        viewBox="0 0 400 420"
+        class="block h-auto w-full max-w-[480px]"
+      >
+        <path
+          d="M243.9,56.1 A160,160 0 1 1 46.1,253.9 A140,140 0 1 0 243.9,56.1 Z"
+          fill="#e9f0c9"
+        />
+        <circle cx="300" cy="300" r="10" fill="#c8d3bd" />
+        <circle cx="330" cy="230" r="6" fill="#c8d3bd" />
+        <circle cx="250" cy="345" r="7" fill="#c8d3bd" />
+        <polygon points="244,228 282,206 266,200" fill="#4a7890" />
+        <polygon points="205,283 262,238 240,222 190,262" fill="#5b8aa3" />
+        <circle cx="262" cy="208" r="16" fill="#c8d3bd" />
+        <polygon points="205,285 170,262 162,276 196,296" fill="#2c5166" />
+        <polygon points="170,262 162,276 118,298 116,286" fill="#2c5166" />
+        <polygon points="212,276 196,290 158,240 174,228" fill="#3b657a" />
+        <polygon points="158,236 176,236 152,298 136,296" fill="#3b657a" />
+        <rect x="234" y="174" width="5" height="5" fill="#9cc3d8" />
+        <rect x="219" y="155" width="7" height="7" fill="#9cc3d8" />
+        <polygon points="196,108 201,123 216,128 201,133 196,148 191,133 176,128 191,123" fill="#e9c46a" />
+        <circle cx="64" cy="84" r="20" fill="#3b657a" />
+        <g transform="rotate(-18 64 84)">
+          <ellipse cx="64" cy="84" rx="34" ry="8" fill="none" stroke="#9cc3d8" stroke-width="3" />
+        </g>
+        <line x1="300" y1="40" x2="350" y2="68" stroke="#9cc3d8" stroke-width="3" />
+        <rect x="346" y="64" width="10" height="10" fill="#e9f0c9" />
+        <rect x="60" y="330" width="8" height="8" fill="#e9f0c9" />
+        <rect x="350" y="340" width="6" height="6" fill="#9cc3d8" />
+        <rect x="24" y="200" width="6" height="6" fill="#9cc3d8" />
+        <rect x="372" y="230" width="8" height="8" fill="#e9f0c9" />
+      </svg>
+    </div>
+  </div>
+
+  <p class="flex items-center justify-center gap-2.5 pb-7 font-pixel text-xs text-muted">
+    <svg aria-hidden="true" width="12" height="10" viewBox="0 0 12 10">
+      <polygon points="0,0 12,0 6,10" fill="#e9f0c9" />
+    </svg>
+    Scroll to continue
+  </p>
+</section>

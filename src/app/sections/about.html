@@ -1,0 +1,196 @@
+<section id="about" aria-labelledby="about-title" class="flex flex-col gap-16 py-24">
+  <div class="mx-auto flex w-full max-w-[1440px] flex-wrap items-end gap-12 px-6 md:px-16">
+    <div class="flex min-w-0 flex-[2_1_480px] flex-col gap-6">
+      <app-section-heading index="001" label="About" title="About me" headingId="about-title" />
+      <p class="max-w-[680px] text-lg leading-relaxed text-cream-dim">{{ about.bio }}</p>
+    </div>
+    <dl class="grid min-w-0 flex-[1_1_360px] grid-cols-3 gap-4">
+      @for (fact of about.facts; track fact.label) {
+        <div class="rounded-[10px] border border-line bg-surface p-4">
+          <dt class="mb-1.5 text-[13px] text-muted">{{ fact.label }}</dt>
+          <dd class="font-semibold break-words">{{ fact.value }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+
+  <!-- Full-width split image: drag the divider to reveal each side. -->
+  <div class="relative h-[640px] w-full overflow-hidden border-y border-steel">
+    <!-- Backend side (underneath) -->
+    <div class="absolute inset-0 bg-[#171310]">
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 720 640"
+        preserveAspectRatio="none"
+        class="absolute top-0 left-1/2 hidden h-full w-1/2 md:block"
+      >
+        <rect x="240" y="30" width="130" height="80" fill="#123142" stroke="#3b657a" stroke-width="3" />
+        <path d="M252,90 L280,60 L300,76 L330,46 L358,70" fill="none" stroke="#9cc3d8" stroke-width="3" />
+        <rect x="390" y="30" width="130" height="80" fill="#123142" stroke="#3b657a" stroke-width="3" />
+        <circle cx="455" cy="70" r="24" fill="none" stroke="#9cc3d8" stroke-width="3" />
+        <circle cx="470" cy="58" r="4" fill="#e9c46a" />
+        <rect x="540" y="30" width="150" height="80" fill="#20130a" stroke="#5a3d24" stroke-width="3" />
+        <text x="615" y="84" text-anchor="middle" font-family="Silkscreen, monospace" font-size="34" fill="#e06a5a">
+          03:00
+        </text>
+        <rect x="0" y="540" width="720" height="100" fill="#20130a" />
+        <rect x="0" y="536" width="720" height="6" fill="#5a3d24" />
+        <rect x="250" y="498" width="30" height="40" fill="#e9f0c9" />
+        <circle cx="286" cy="518" r="9" fill="none" stroke="#e9f0c9" stroke-width="4" />
+        <rect x="320" y="506" width="26" height="32" fill="#c8d3bd" />
+        <circle cx="351" cy="522" r="8" fill="none" stroke="#c8d3bd" stroke-width="4" />
+        <rect x="560" y="494" width="32" height="44" fill="#e9f0c9" />
+        <circle cx="598" cy="516" r="10" fill="none" stroke="#e9f0c9" stroke-width="4" />
+        <polygon points="630,538 640,500 668,500 678,538" fill="#c8d3bd" />
+        <rect x="420" y="470" width="110" height="68" fill="#9cc3d8" stroke="#142026" stroke-width="5" />
+        <line x1="434" y1="490" x2="500" y2="490" stroke="#142026" stroke-width="4" />
+        <line x1="434" y1="508" x2="516" y2="508" stroke="#142026" stroke-width="4" />
+      </svg>
+
+      <svg
+        role="img"
+        aria-label="Placeholder portrait: the same person at a mission control console at 3 a.m., wearing a headset, with messy hair, a beard and tired eyes"
+        viewBox="0 0 320 440"
+        class="absolute bottom-0 left-1/2 block h-[384px] w-[280px] -translate-x-1/2 md:h-[522px] md:w-[380px]"
+      >
+        <polygon points="10,440 50,330 110,296 210,296 270,330 310,440" fill="#5a6b74" />
+        <polygon points="128,298 160,346 192,298" fill="#b79d84" />
+        <line x1="132" y1="300" x2="150" y2="420" stroke="#e9c46a" stroke-width="3" />
+        <line x1="188" y1="300" x2="170" y2="420" stroke="#e9c46a" stroke-width="3" />
+        <rect x="140" y="412" width="40" height="28" fill="#e9f0c9" />
+        <rect x="140" y="258" width="40" height="50" fill="#b79d84" />
+        <ellipse cx="160" cy="190" rx="70" ry="84" fill="#cdb49a" />
+        <polygon points="86,196 234,196 232,262 160,300 88,262" fill="#0f0a06" />
+        <polygon
+          points="82,180 70,130 92,140 88,96 116,112 124,74 150,104 170,70 186,106 214,82 214,118 244,108 232,146 250,170 226,162 212,136 108,136 96,166"
+          fill="#0f0a06"
+        />
+        <path d="M84,176 A78,84 0 0 1 236,176" fill="none" stroke="#9fb6c2" stroke-width="9" />
+        <rect x="224" y="164" width="22" height="46" rx="7" fill="#9fb6c2" />
+        <rect x="74" y="164" width="22" height="46" rx="7" fill="#9fb6c2" />
+        <path d="M238,206 Q236,248 196,250" fill="none" stroke="#9fb6c2" stroke-width="5" />
+        <circle cx="194" cy="250" r="7" fill="#9fb6c2" />
+        <line x1="112" y1="182" x2="148" y2="182" stroke="#0f0a06" stroke-width="5" />
+        <line x1="172" y1="182" x2="208" y2="182" stroke="#0f0a06" stroke-width="5" />
+        <path d="M112,192 Q130,204 148,192" fill="none" stroke="#8a7460" stroke-width="4" />
+        <path d="M172,192 Q190,204 208,192" fill="none" stroke="#8a7460" stroke-width="4" />
+        <line x1="140" y1="244" x2="176" y2="244" stroke="#cdb49a" stroke-width="5" />
+      </svg>
+
+      <div
+        class="absolute top-6 right-4 flex w-[44%] max-w-[380px] flex-col gap-3 md:top-1/2 md:right-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
+      >
+        <p class="font-pixel text-xs text-gold">{{ about.backend.eyebrow }}</p>
+        <h3 class="text-3xl leading-none font-bold tracking-tighter md:text-6xl">
+          {{ about.backend.title }}
+        </h3>
+        <p class="hidden text-[17px] leading-relaxed text-cream-dim md:block">
+          {{ about.backend.blurb }}
+        </p>
+        <ul class="flex flex-wrap gap-2 text-sm font-medium" aria-label="Backend technologies">
+          @for (tech of about.backend.tech; track $index) {
+            <li class="rounded-md border border-soil-light bg-soil px-3 py-2">{{ tech }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Frontend side (on top, clipped at the divider) -->
+    <div
+      class="absolute inset-0 bg-[linear-gradient(#3b657a_0,#3b657a_72%,#8fa39a_72%,#8fa39a_100%)]"
+      [style.clip-path]="frontendClip()"
+    >
+      <div
+        aria-hidden="true"
+        class="absolute top-[12%] left-[32%] size-12 rounded-full bg-sky md:size-20"
+      ></div>
+
+      <svg
+        role="img"
+        aria-label="Placeholder portrait: astronaut in a full suit and helmet on a planet's surface, smiling through the visor and planting a flag"
+        viewBox="0 0 320 440"
+        class="absolute bottom-0 left-1/2 block h-[384px] w-[280px] -translate-x-1/2 md:h-[522px] md:w-[380px]"
+      >
+        <line x1="40" y1="440" x2="40" y2="84" stroke="#142026" stroke-width="6" />
+        <polygon points="40,88 94,104 40,124" fill="#e9c46a" />
+        <polygon points="20,440 56,330 118,300 202,300 264,330 300,440" fill="#e9f0c9" />
+        <polygon points="56,330 30,336 34,362 70,356" fill="#c8d3bd" />
+        <circle cx="40" cy="346" r="17" fill="#e9f0c9" stroke="#142026" stroke-width="3" />
+        <rect x="176" y="350" width="64" height="40" fill="#3b657a" />
+        <circle cx="190" cy="370" r="5" fill="#e9c46a" />
+        <circle cx="208" cy="370" r="5" fill="#e9f0c9" />
+        <circle cx="226" cy="370" r="5" fill="#9cc3d8" />
+        <ellipse cx="160" cy="304" rx="62" ry="16" fill="#9cc3d8" />
+        <circle cx="160" cy="190" r="100" fill="#e9f0c9" stroke="#142026" stroke-width="3" />
+        <ellipse cx="160" cy="194" rx="80" ry="84" fill="#123142" />
+        <ellipse cx="160" cy="200" rx="58" ry="68" fill="#e3c4a4" />
+        <polygon points="104,206 216,206 210,246 160,270 110,246" fill="#20130a" />
+        <polygon points="104,186 112,146 160,132 208,146 216,186 200,160 120,160" fill="#20130a" />
+        <circle cx="136" cy="190" r="5" fill="#142026" />
+        <circle cx="184" cy="190" r="5" fill="#142026" />
+        <path d="M140,230 Q160,248 180,230 Z" fill="#e9f0c9" />
+        <polygon points="196,120 226,170 214,176 190,130" fill="#e9f0c9" opacity="0.5" />
+      </svg>
+
+      <div
+        class="absolute top-6 left-4 flex w-[44%] max-w-[380px] flex-col gap-3 md:top-1/2 md:left-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
+      >
+        <p class="font-pixel text-xs">{{ about.frontend.eyebrow }}</p>
+        <h3 class="text-3xl leading-none font-bold tracking-tighter md:text-6xl">
+          {{ about.frontend.title }}
+        </h3>
+        <p class="hidden text-[17px] leading-relaxed md:block">{{ about.frontend.blurb }}</p>
+        <ul class="flex flex-wrap gap-2 text-sm font-medium" aria-label="Frontend technologies">
+          @for (tech of about.frontend.tech; track $index) {
+            <li class="rounded-md bg-space px-3 py-2">{{ tech }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- The range input covers the whole image, so dragging anywhere moves the divider. -->
+    <input
+      type="range"
+      min="0"
+      max="100"
+      step="1"
+      class="peer absolute inset-0 z-10 m-0 size-full cursor-ew-resize opacity-0"
+      aria-label="Reveal the frontend or the backend side of the image"
+      [value]="split()"
+      [attr.aria-valuetext]="splitDescription()"
+      (input)="onSplit($event)"
+    />
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute top-0 h-full w-1 -translate-x-1/2 bg-cream"
+      [style.left.%]="split()"
+    ></div>
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cream peer-focus-visible:ring-4 peer-focus-visible:ring-sky"
+      [style.left.%]="split()"
+    >
+      <svg width="28" height="14" viewBox="0 0 28 14">
+        <polygon points="0,7 9,0 9,14" fill="#142026" />
+        <polygon points="28,7 19,0 19,14" fill="#142026" />
+      </svg>
+    </div>
+    <p
+      class="pointer-events-none absolute bottom-3.5 left-1/2 -translate-x-1/2 rounded-md bg-space px-2.5 py-1.5 font-pixel text-xs whitespace-nowrap"
+    >
+      Drag to switch sides
+    </p>
+  </div>
+
+  <div class="mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-6 md:px-16">
+    <h3 class="text-[22px] font-bold">Off the clock</h3>
+    <ul class="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-3">
+      @for (hobby of about.hobbies; track $index) {
+        <li class="flex flex-col gap-3.5 rounded-[10px] border border-line bg-surface p-[18px]">
+          <app-space-icon [name]="hobby.icon" />
+          <span class="font-semibold">{{ hobby.name }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
