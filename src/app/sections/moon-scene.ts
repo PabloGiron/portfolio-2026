@@ -13,11 +13,10 @@ import type * as Three from 'three';
 
 /**
  * Path of the Blender export for the hero, relative to the site root.
- * Leave as null to show the stand-in scene built in code below.
- * Once the model exists, save it as public/models/hero.glb and set this to
- * 'models/hero.glb'.
+ * The file comes from blender/hero.blend (File > Export > glTF 2.0, .glb).
+ * Set this to null to show the stand-in scene built in code below instead.
  */
-export const HERO_MODEL_URL: string | null = null;
+export const HERO_MODEL_URL: string | null = 'models/hero.glb';
 
 /** How far the scene may turn towards the pointer, in radians. */
 const MAX_TURN = 0.45;
