@@ -27,6 +27,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "draco_{decoder.wasm,wasm_wrapper.js}",
+                "input": "node_modules/three/examples/jsm/libs/draco/gltf",
+                "output": "draco"
               }
             ],
             "styles": ["src/tailwind.css", "src/styles.scss"]

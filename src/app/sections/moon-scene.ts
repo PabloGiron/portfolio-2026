@@ -197,8 +197,15 @@ export class MoonScene {
   /** Loads the Blender export. Returns null if it is missing or broken. */
   private async loadModel(THREE: typeof Three, url: string): Promise<Three.Object3D | null> {
     try {
-      const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
-      const gltf = await new GLTFLoader().loadAsync(url);
+      const [{ GLTFLoader }, { DRACOLoader }] = await Promise.all([
+        import('three/addons/loaders/GLTFLoader.js'),
+        import('three/addons/loaders/DRACOLoader.js'),
+      ]);
+      // The model is Draco-compressed; its decoder is copied from three.js
+      // into /draco at build time (see "assets" in angular.json).
+      const draco = new DRACOLoader().setDecoderPath('draco/');
+      const gltf = await new GLTFLoader().setDRACOLoader(draco).loadAsync(url);
+      draco.dispose();
       // Scale and centre whatever was exported so it fills the same space
       // as the stand-in, regardless of the units used in Blender.
       const box = new THREE.Box3().setFromObject(gltf.scene);
