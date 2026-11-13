@@ -1,0 +1,47 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens for the portfolio.
+ * Each --color-* token becomes bg-*, text-*, border-* etc. (e.g. bg-space, text-cream).
+ * Each --font-* token becomes a font-* utility (e.g. font-display).
+ */
+@theme {
+  /* Core palette */
+  --color-space: #142026; /* page background */
+  --color-surface: #123142; /* cards, chips, form */
+  --color-steel: #3b657a; /* strong borders, planets, 3D shapes */
+  --color-cream: #e9f0c9; /* main text, primary buttons */
+  --color-soil: #20130a; /* warm accent: contact horizon, backend side */
+
+  /* Derived shades */
+  --color-line: #2a4a5c; /* subtle borders */
+  --color-sky: #9cc3d8; /* hover, stars, highlights */
+  --color-muted: #9fb6c2; /* labels and captions */
+  --color-cream-dim: #c8d3bd; /* secondary body text */
+  --color-soil-light: #5a3d24; /* borders on soil */
+  --color-gold: #e9c46a; /* stars, small warm accents */
+  --color-alert: #e06a5a; /* warning lights */
+
+  /* Type */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-pixel: 'Silkscreen', ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-space);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+}
