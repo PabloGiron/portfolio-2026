@@ -20,8 +20,13 @@
     </dl>
   </div>
 
-  <!-- Full-width split image: drag the divider to reveal each side. -->
-  <div class="relative h-[640px] w-full overflow-hidden border-y border-steel">
+  <!-- Full-width split image: pointing at a side expands it over the other. -->
+  <div
+    class="relative h-[640px] w-full overflow-hidden border-y border-steel"
+    (pointermove)="onPointer($event)"
+    (pointerdown)="onPointer($event)"
+    (pointerleave)="onLeave($event)"
+  >
     <!-- Backend side (underneath) -->
     <div class="absolute inset-0 bg-[#171310]">
       <svg
@@ -84,7 +89,8 @@
       </svg>
 
       <div
-        class="absolute top-6 right-4 flex w-[44%] max-w-[380px] flex-col gap-3 md:top-1/2 md:right-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
+        class="absolute top-6 right-4 flex w-[44%] max-w-[380px] flex-col gap-3 transition-opacity duration-500 md:top-1/2 md:right-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
+        [class.opacity-30]="split() > 50"
       >
         <p class="font-pixel text-xs text-gold">{{ about.backend.eyebrow }}</p>
         <h3 class="text-3xl leading-none font-bold tracking-tighter md:text-6xl">
@@ -103,7 +109,7 @@
 
     <!-- Frontend side (on top, clipped at the divider) -->
     <div
-      class="absolute inset-0 bg-[linear-gradient(#3b657a_0,#3b657a_72%,#8fa39a_72%,#8fa39a_100%)]"
+      class="absolute inset-0 bg-[linear-gradient(#3b657a_0,#3b657a_72%,#8fa39a_72%,#8fa39a_100%)] motion-safe:transition-[clip-path] motion-safe:duration-500 motion-safe:ease-out"
       [style.clip-path]="frontendClip()"
     >
       <div
@@ -139,7 +145,8 @@
       </svg>
 
       <div
-        class="absolute top-6 left-4 flex w-[44%] max-w-[380px] flex-col gap-3 md:top-1/2 md:left-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
+        class="absolute top-6 left-4 flex w-[44%] max-w-[380px] flex-col gap-3 transition-opacity duration-500 md:top-1/2 md:left-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
+        [class.opacity-30]="split() < 50"
       >
         <p class="font-pixel text-xs">{{ about.frontend.eyebrow }}</p>
         <h3 class="text-3xl leading-none font-bold tracking-tighter md:text-6xl">
@@ -154,13 +161,13 @@
       </div>
     </div>
 
-    <!-- The range input covers the whole image, so dragging anywhere moves the divider. -->
+    <!-- Keyboard control: focus it and use the arrow keys to move the divider. -->
     <input
       type="range"
       min="0"
       max="100"
       step="1"
-      class="peer absolute inset-0 z-10 m-0 size-full cursor-ew-resize opacity-0"
+      class="peer pointer-events-none absolute inset-0 z-10 m-0 size-full opacity-0"
       aria-label="Reveal the frontend or the backend side of the image"
       [value]="split()"
       [attr.aria-valuetext]="splitDescription()"
@@ -168,24 +175,9 @@
     />
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute top-0 h-full w-1 -translate-x-1/2 bg-cream"
+      class="pointer-events-none absolute top-0 h-full w-1 -translate-x-1/2 bg-cream peer-focus-visible:w-2 peer-focus-visible:bg-sky motion-safe:transition-[left] motion-safe:duration-500 motion-safe:ease-out"
       [style.left.%]="split()"
     ></div>
-    <div
-      aria-hidden="true"
-      class="pointer-events-none absolute top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-cream peer-focus-visible:ring-4 peer-focus-visible:ring-sky"
-      [style.left.%]="split()"
-    >
-      <svg width="28" height="14" viewBox="0 0 28 14">
-        <polygon points="0,7 9,0 9,14" fill="#142026" />
-        <polygon points="28,7 19,0 19,14" fill="#142026" />
-      </svg>
-    </div>
-    <p
-      class="pointer-events-none absolute bottom-3.5 left-1/2 -translate-x-1/2 rounded-md bg-space px-2.5 py-1.5 font-pixel text-xs whitespace-nowrap"
-    >
-      Drag to switch sides
-    </p>
   </div>
 
   <div class="mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-6 md:px-16">

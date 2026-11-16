@@ -38,6 +38,28 @@ describe('App', () => {
     expect(ids).toEqual(['top', 'experience', 'about', 'projects', 'contact']);
   });
 
+  it('should expand the About side the pointer is over, and reset when it leaves', () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    const page = fixture.nativeElement as HTMLElement;
+    const slider = page.querySelector<HTMLInputElement>('#about input[type="range"]')!;
+    const band = slider.parentElement!;
+    band.getBoundingClientRect = () => ({ left: 0, width: 1000 }) as DOMRect;
+    const point = (type: string, clientX: number) => {
+      const event = new MouseEvent(type, { clientX, bubbles: true });
+      Object.defineProperty(event, 'pointerType', { value: 'mouse' });
+      band.dispatchEvent(event);
+      fixture.detectChanges();
+    };
+
+    point('pointermove', 200);
+    expect(slider.getAttribute('aria-valuetext')).toBe('72% frontend, 28% backend');
+    point('pointermove', 800);
+    expect(slider.getAttribute('aria-valuetext')).toBe('28% frontend, 72% backend');
+    point('pointerleave', 800);
+    expect(slider.getAttribute('aria-valuetext')).toBe('50% frontend, 50% backend');
+  });
+
   it('should move the About divider when the slider changes', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
