@@ -57,12 +57,12 @@ export interface SocialLink {
 }
 
 export const PROFILE = {
-  name: '[YOUR NAME]',
-  role: '[YOUR ROLE]',
+  name: 'Pablo Giron',
+  role: 'Fullstack developer',
   level: 'Lv. [XX]',
   city: 'GT-09',
   tagline:
-    '[YOUR ROLE]. Out here, anything is possible — I build [WHAT YOU BUILD] with Angular and [YOUR STACK].',
+    'Fullstack developer. Out here, anything is possible — I build web pages with Angular, Spring Boot and Kubernetes.',
   email: 'you@example.com',
   cvUrl: '#',
   year: '[YEAR]',
