@@ -84,8 +84,9 @@ export const ABOUT = {
   backend: {
     eyebrow: 'Mission control, 03:00',
     title: 'backend',
-    blurb: 'The one who gets everybody home. [WHAT YOU DO ON THE SERVER SIDE.]',
-    tech: ['[TECH]', '[TECH]', '[TECH]', '[TECH]'],
+    blurb:
+      'The one who gets everybody home. REST APIs for high-volume transactions, role-based authentication, multithreaded jobs and Kubernetes clusters.',
+    tech: ['Spring Boot', 'Spring Batch', 'Micronaut', 'Kubernetes'],
   } as StackSide,
   hobbies: [
     { name: '[HOBBY]', icon: 'planet' },
