@@ -67,17 +67,17 @@
         ngSrc="images/backend.jpg"
         fill
         sizes="100vw"
-        alt="The same developer late at night in a dark, cluttered room: hoodie and headphones, surrounded by monitors full of code, energy drink cans and snack wrappers."
-        class="object-cover object-[50%_32%]"
+        alt="The same developer, tired and unshaven in a hoodie and headphones, at a desk in a dim server room surrounded by racks, cables, monitors and coffee mugs."
+        class="object-cover object-[68%_50%]"
       />
-      <!-- Darkens the right edge so the text stays readable over the monitors. -->
+      <!-- Darkens the right edge so the text stays readable over the room. -->
       <div
         aria-hidden="true"
-        class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(13,18,22,0.85),rgba(13,18,22,0)_55%)] md:bg-[linear-gradient(to_left,rgba(13,18,22,0.92)_8%,rgba(13,18,22,0)_52%)]"
+        class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(13,18,22,0.85),rgba(13,18,22,0)_55%)] md:bg-[linear-gradient(to_left,rgba(13,18,22,0.94)_10%,rgba(13,18,22,0)_32%)]"
       ></div>
 
       <div
-        class="absolute top-6 right-4 flex w-[44%] max-w-[380px] flex-col gap-3 transition-opacity duration-500 md:top-1/2 md:right-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
+        class="absolute top-6 right-4 flex w-[44%] max-w-[380px] flex-col gap-3 transition-opacity duration-500 md:top-1/2 md:right-10 md:w-[21%] md:-translate-y-1/2 md:gap-4"
         [class.opacity-30]="split() > 50"
       >
         <p class="font-pixel text-xs text-gold">{{ about.backend.eyebrow }}</p>
