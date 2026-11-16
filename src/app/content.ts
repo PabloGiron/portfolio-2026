@@ -60,7 +60,7 @@ export const PROFILE = {
   name: '[YOUR NAME]',
   role: '[YOUR ROLE]',
   level: 'Lv. [XX]',
-  city: '[YOUR CITY]',
+  city: 'GT-09',
   tagline:
     '[YOUR ROLE]. Out here, anything is possible — I build [WHAT YOU BUILD] with Angular and [YOUR STACK].',
   email: 'you@example.com',
@@ -71,9 +71,9 @@ export const PROFILE = {
 export const ABOUT = {
   bio: '[WHO YOU ARE, WHAT YOU DO TODAY, HOW YOU WORK AND WHAT YOU WANT NEXT.]',
   facts: [
-    { label: 'Based in', value: '[YOUR CITY]' },
-    { label: 'Experience', value: '[X] years' },
-    { label: 'Focus', value: '[YOUR FOCUS]' },
+    { label: 'Based in', value: 'GT-09' },
+    { label: 'Experience', value: '5 years' },
+    { label: 'Focus', value: 'Backend' },
   ] as readonly Fact[],
   frontend: {
     eyebrow: 'Boots on the surface',
