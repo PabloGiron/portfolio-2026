@@ -30,6 +30,14 @@ export const HERO_MODEL_URL: string | null = 'models/space-explorer.glb';
  */
 const HERO_MODEL_YAW = 0.6;
 
+/**
+ * The entrance: the model starts this far above its resting place (well out
+ * of view) and eases down. ENTRANCE_RATE sets how quickly; at 3.8 it has
+ * settled after a little over a second.
+ */
+const ENTRANCE_HEIGHT = 5;
+const ENTRANCE_RATE = 3.8;
+
 /** How far the scene may turn towards the pointer, in radians. */
 const MAX_TURN = 0.45;
 const MAX_TILT = 0.2;
@@ -37,20 +45,23 @@ const MAX_TILT = 0.2;
 const deg = (value: number): number => (value * Math.PI) / 180;
 
 /**
- * The 3D scene on the main page: a person resting in a crescent moon.
- * Whatever is placed inside <app-moon-scene> is shown instead when 3D cannot
- * run (reduced motion, no WebGL, or before the scene has loaded).
+ * The 3D scene on the main page. Nothing is shown while the model loads; once
+ * it is ready the astronaut drops in from above and settles into place.
+ * Visitors who ask for reduced motion get the model already in place, still.
+ * Without WebGL the area stays empty.
  */
 @Component({
   selector: 'app-moon-scene',
   template: `
-    <canvas #canvas aria-hidden="true" class="block size-full" [class.hidden]="!live()"></canvas>
-    @if (!live()) {
-      <ng-content />
-    }
+    <canvas
+      #canvas
+      aria-hidden="true"
+      class="block size-full transition-opacity duration-700"
+      [class.opacity-0]="!live()"
+    ></canvas>
   `,
   host: {
-    class: 'block aspect-[400/420] w-full max-w-[480px] touch-pan-y',
+    class: 'block aspect-[400/420] w-full max-w-[720px] touch-pan-y',
     role: 'img',
     '[attr.aria-label]': 'label()',
     '(pointermove)': 'onPointerMove($event)',
@@ -95,9 +106,8 @@ export class MoonScene {
     if (!view || typeof view.matchMedia !== 'function') {
       return;
     }
-    if (view.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
+    // Reduced motion: show the model, but draw it once and leave it still.
+    const still = view.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // Three.js is loaded only here, so it never weighs on the first paint.
     const THREE = await import('three');
@@ -156,6 +166,9 @@ export class MoonScene {
       renderer.setSize(width, height, false);
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
+      if (still) {
+        renderer.render(scene, camera);
+      }
     };
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(host);
@@ -170,30 +183,32 @@ export class MoonScene {
     const clock = new THREE.Clock();
     let frame = 0;
     let lastTime = 0;
+    let drop = ENTRANCE_HEIGHT;
     const draw = (): void => {
       frame = view.requestAnimationFrame(draw);
       if (!visible) {
         return;
       }
       const time = clock.getElapsedTime();
+      // The cap avoids a jump after the tab or the scene has been paused.
+      const elapsed = Math.min(time - lastTime, 0.1);
+      drop *= Math.exp(-ENTRANCE_RATE * elapsed);
 
       // The visitor can nudge the scene, but only within a small range.
       const restYaw = loaded ? HERO_MODEL_YAW : 0;
       stage.rotation.y += (restYaw + this.pointer.x * MAX_TURN - stage.rotation.y) * 0.06;
       stage.rotation.x += (this.pointer.y * MAX_TILT - stage.rotation.x) * 0.06;
-      stage.position.y = Math.sin(time * 0.6) * 0.06;
+      stage.position.y = Math.sin(time * 0.6) * 0.06 + drop;
 
       standIn?.animate(time);
-      // Advance the model's own animation; the cap avoids a jump after a pause.
-      loaded?.mixer?.update(Math.min(time - lastTime, 0.1));
+      loaded?.mixer?.update(elapsed);
       lastTime = time;
       renderer.render(scene, camera);
     };
-    // The canvas only gets a size once the fallback is gone, so wait a frame.
-    view.requestAnimationFrame(() => {
-      resize();
+    resize();
+    if (!still) {
       draw();
-    });
+    }
 
     this.destroyRef.onDestroy(() => {
       view.cancelAnimationFrame(frame);
@@ -230,7 +245,7 @@ export class MoonScene {
       const box = new THREE.Box3().setFromObject(gltf.scene);
       const size = box.getSize(new THREE.Vector3());
       const centre = box.getCenter(new THREE.Vector3());
-      const scale = 3.4 / Math.max(size.x, size.y, size.z, 0.001);
+      const scale = 4 / Math.max(size.x, size.y, size.z, 0.001);
       gltf.scene.position.sub(centre).multiplyScalar(scale);
       gltf.scene.scale.setScalar(scale);
       const holder = new THREE.Group();
