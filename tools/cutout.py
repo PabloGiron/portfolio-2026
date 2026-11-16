@@ -9,7 +9,13 @@ import sys
 import bpy
 import numpy as np
 
-src, dst = sys.argv[-2], sys.argv[-1]
+# Usage: Blender -b --python tools/cutout.py -- <src> <dst> [min lightness] [max chroma] [x,y ...]
+# Each extra x,y (pixels from the top-left) also clears an enclosed pocket of background.
+args = sys.argv[sys.argv.index("--") + 1 :]
+src, dst = args[0], args[1]
+min_lightness = float(args[2]) if len(args) > 2 else 0.84
+max_chroma = float(args[3]) if len(args) > 3 else 0.10
+pockets = [tuple(int(n) for n in a.split(",")) for a in args[4:]]
 image = bpy.data.images.load(src)
 w, h = image.size
 px = np.array(image.pixels[:], dtype=np.float32).reshape(h, w, 4)
@@ -28,11 +34,13 @@ def grow(mask, diagonal=True):
 
 # 1. Background: light, nearly colourless pixels connected to the border.
 lightness = rgb.min(axis=2)
-colourless = (rgb.max(axis=2) - rgb.min(axis=2)) < 0.10
-background_like = (lightness > 0.84) & colourless
+colourless = (rgb.max(axis=2) - rgb.min(axis=2)) < max_chroma
+background_like = (lightness > min_lightness) & colourless
 removed = np.zeros_like(background_like)
 removed[0, :] = background_like[0, :]; removed[-1, :] = background_like[-1, :]
 removed[:, 0] = background_like[:, 0]; removed[:, -1] = background_like[:, -1]
+for x, y in pockets:
+    removed[h - 1 - y, x] = background_like[h - 1 - y, x]
 while True:
     bigger = grow(removed, diagonal=False) & background_like
     if (bigger == removed).all():

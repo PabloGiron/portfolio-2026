@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { ABOUT } from '../content';
 import { SectionHeading } from '../shared/section-heading';
@@ -8,7 +9,7 @@ const EXPANDED = 72;
 
 @Component({
   selector: 'app-about',
-  imports: [SectionHeading, SpaceIcon],
+  imports: [NgOptimizedImage, SectionHeading, SpaceIcon],
   templateUrl: './about.html',
   host: { class: 'block' },
 })
