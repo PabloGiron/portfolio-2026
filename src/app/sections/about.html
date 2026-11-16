@@ -22,13 +22,47 @@
 
   <!-- Full-width split image: pointing at a side expands it over the other. -->
   <div
-    class="relative h-[640px] w-full overflow-hidden border-y border-steel"
+    class="relative h-[640px] w-full overflow-hidden"
     (pointermove)="onPointer($event)"
     (pointerdown)="onPointer($event)"
     (pointerleave)="onLeave($event)"
   >
-    <!-- Backend side (underneath) -->
-    <div class="absolute inset-0 bg-[#0d1216]">
+    <!-- Frontend side (underneath): no background of its own, so the sky behind the section shows through. -->
+    <div class="absolute inset-0">
+      <div
+        class="absolute bottom-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 md:top-0 md:left-[46%] md:h-full md:w-[640px]"
+      >
+        <img
+          ngSrc="images/frontend.png"
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          alt="The same developer as a smiling astronaut with glasses and a beard, helmet under one arm, floating among drifting panels, a laptop and a game controller."
+          class="object-contain"
+        />
+      </div>
+
+      <div
+        class="absolute top-6 left-4 flex w-[44%] max-w-[380px] flex-col gap-3 transition-opacity duration-500 md:top-1/2 md:left-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
+        [class.opacity-30]="split() < 50"
+      >
+        <p class="font-pixel text-xs">{{ about.frontend.eyebrow }}</p>
+        <h3 class="text-3xl leading-none font-bold tracking-tighter md:text-6xl">
+          {{ about.frontend.title }}
+        </h3>
+        <p class="hidden text-[17px] leading-relaxed md:block">{{ about.frontend.blurb }}</p>
+        <ul class="flex flex-wrap gap-2 text-sm font-medium" aria-label="Frontend technologies">
+          @for (tech of about.frontend.tech; track $index) {
+            <li class="rounded-md bg-space px-3 py-2">{{ tech }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Backend side (on top, clipped at the divider) -->
+    <div
+      class="absolute inset-0 bg-[#0d1216] motion-safe:transition-[clip-path] motion-safe:duration-500 motion-safe:ease-out"
+      [style.clip-path]="backendClip()"
+    >
       <img
         ngSrc="images/backend.jpg"
         fill
@@ -56,40 +90,6 @@
         <ul class="flex flex-wrap gap-2 text-sm font-medium" aria-label="Backend technologies">
           @for (tech of about.backend.tech; track $index) {
             <li class="rounded-md border border-soil-light bg-soil px-3 py-2">{{ tech }}</li>
-          }
-        </ul>
-      </div>
-    </div>
-
-    <!-- Frontend side (on top, clipped at the divider) -->
-    <div
-      class="absolute inset-0 bg-[linear-gradient(#2f5a70,#4a7a8f)] motion-safe:transition-[clip-path] motion-safe:duration-500 motion-safe:ease-out"
-      [style.clip-path]="frontendClip()"
-    >
-      <div
-        class="absolute bottom-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 md:top-0 md:left-[46%] md:h-full md:w-[640px]"
-      >
-        <img
-          ngSrc="images/frontend.png"
-          fill
-          sizes="(min-width: 768px) 50vw, 100vw"
-          alt="The same developer as a smiling astronaut with glasses and a beard, helmet under one arm, floating among drifting panels, a laptop and a game controller."
-          class="object-contain"
-        />
-      </div>
-
-      <div
-        class="absolute top-6 left-4 flex w-[44%] max-w-[380px] flex-col gap-3 transition-opacity duration-500 md:top-1/2 md:left-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
-        [class.opacity-30]="split() < 50"
-      >
-        <p class="font-pixel text-xs">{{ about.frontend.eyebrow }}</p>
-        <h3 class="text-3xl leading-none font-bold tracking-tighter md:text-6xl">
-          {{ about.frontend.title }}
-        </h3>
-        <p class="hidden text-[17px] leading-relaxed md:block">{{ about.frontend.blurb }}</p>
-        <ul class="flex flex-wrap gap-2 text-sm font-medium" aria-label="Frontend technologies">
-          @for (tech of about.frontend.tech; track $index) {
-            <li class="rounded-md bg-space px-3 py-2">{{ tech }}</li>
           }
         </ul>
       </div>

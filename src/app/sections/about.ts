@@ -19,8 +19,8 @@ export class About {
   /** How much of the frontend side is revealed, from 0 to 100. */
   protected readonly split = signal(50);
 
-  /** Clips the frontend layer so only the part left of the divider shows. */
-  protected readonly frontendClip = computed(() => `inset(0 ${100 - this.split()}% 0 0)`);
+  /** Clips the backend layer so only the part right of the divider shows. */
+  protected readonly backendClip = computed(() => `inset(0 0 0 ${this.split()}%)`);
 
   protected readonly splitDescription = computed(
     () => `${this.split()}% frontend, ${100 - this.split()}% backend`,
