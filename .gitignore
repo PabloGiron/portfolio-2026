@@ -45,3 +45,6 @@ Thumbs.db
 
 # Blender backup files
 *.blend1
+
+# Raw AI-generated model (65 MB); the reduced versions are what is tracked
+blender/space-explorer/space-explorer_raw.glb

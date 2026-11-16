@@ -12,11 +12,16 @@ import {
 import type * as Three from 'three';
 
 /**
- * Path of the Blender export for the hero, relative to the site root.
- * The file comes from blender/hero.blend (File > Export > glTF 2.0, .glb).
- * Set this to null to show the stand-in scene built in code below instead.
+ * The 3D model shown on the main page, relative to the site root.
+ *
+ *   'models/space-explorer.glb'  your own astronaut, reduced from the raw model
+ *                                by blender/space-explorer/optimize.py
+ *   'models/astronaut.glb'  falling astronaut by wallmasterr (CC BY 4.0, see
+ *                           public/models/CREDITS.md), with an idle animation
+ *   'models/hero.glb'       astronaut resting in the moon, from blender/hero.blend
+ *   null                    the stand-in scene built in code below
  */
-export const HERO_MODEL_URL: string | null = 'models/hero.glb';
+export const HERO_MODEL_URL: string | null = 'models/space-explorer.glb';
 
 /** How far the scene may turn towards the pointer, in radians. */
 const MAX_TURN = 0.45;
@@ -118,13 +123,13 @@ export class MoonScene {
     scene.add(stage);
 
     let standIn: StandIn | null = null;
-    const model = HERO_MODEL_URL ? await this.loadModel(THREE, HERO_MODEL_URL) : null;
+    const loaded = HERO_MODEL_URL ? await this.loadModel(THREE, HERO_MODEL_URL) : null;
     if (this.destroyed) {
       renderer.dispose();
       return;
     }
-    if (model) {
-      stage.add(model);
+    if (loaded) {
+      stage.add(loaded.object);
     } else {
       standIn = buildStandIn(THREE);
       stage.add(standIn.root);
@@ -155,6 +160,7 @@ export class MoonScene {
 
     const clock = new THREE.Clock();
     let frame = 0;
+    let lastTime = 0;
     const draw = (): void => {
       frame = view.requestAnimationFrame(draw);
       if (!visible) {
@@ -168,6 +174,9 @@ export class MoonScene {
       stage.position.y = Math.sin(time * 0.6) * 0.06;
 
       standIn?.animate(time);
+      // Advance the model's own animation; the cap avoids a jump after a pause.
+      loaded?.mixer?.update(Math.min(time - lastTime, 0.1));
+      lastTime = time;
       renderer.render(scene, camera);
     };
     // The canvas only gets a size once the fallback is gone, so wait a frame.
@@ -194,20 +203,20 @@ export class MoonScene {
     });
   }
 
-  /** Loads the Blender export. Returns null if it is missing or broken. */
-  private async loadModel(THREE: typeof Three, url: string): Promise<Three.Object3D | null> {
+  /** Loads a .glb model and starts its first animation, if it has one. Returns null if it is missing or broken. */
+  private async loadModel(THREE: typeof Three, url: string): Promise<LoadedModel | null> {
     try {
       const [{ GLTFLoader }, { DRACOLoader }] = await Promise.all([
         import('three/addons/loaders/GLTFLoader.js'),
         import('three/addons/loaders/DRACOLoader.js'),
       ]);
-      // The model is Draco-compressed; its decoder is copied from three.js
+      // Draco-compressed models need a decoder; it is copied from three.js
       // into /draco at build time (see "assets" in angular.json).
       const draco = new DRACOLoader().setDecoderPath('draco/');
       const gltf = await new GLTFLoader().setDRACOLoader(draco).loadAsync(url);
       draco.dispose();
-      // Scale and centre whatever was exported so it fills the same space
-      // as the stand-in, regardless of the units used in Blender.
+      // Scale and centre the model so it fills the same space as the
+      // stand-in, whatever units it was made in.
       const box = new THREE.Box3().setFromObject(gltf.scene);
       const size = box.getSize(new THREE.Vector3());
       const centre = box.getCenter(new THREE.Vector3());
@@ -216,11 +225,22 @@ export class MoonScene {
       gltf.scene.scale.setScalar(scale);
       const holder = new THREE.Group();
       holder.add(gltf.scene);
-      return holder;
+
+      let mixer: Three.AnimationMixer | null = null;
+      if (gltf.animations.length > 0) {
+        mixer = new THREE.AnimationMixer(gltf.scene);
+        mixer.clipAction(gltf.animations[0]).play();
+      }
+      return { object: holder, mixer };
     } catch {
       return null;
     }
   }
+}
+
+interface LoadedModel {
+  readonly object: Three.Object3D;
+  readonly mixer: Three.AnimationMixer | null;
 }
 
 interface StandIn {
