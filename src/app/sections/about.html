@@ -10,9 +10,9 @@
       />
       <p class="max-w-[680px] text-lg leading-relaxed">{{ about.bio }}</p>
     </div>
-    <dl class="grid min-w-0 flex-[1_1_360px] grid-cols-3 gap-4">
+    <dl class="grid min-w-0 flex-[1_1_360px] grid-cols-3 gap-2 md:gap-4">
       @for (fact of about.facts; track fact.label) {
-        <div class="rounded-[10px] border border-line bg-surface p-4">
+        <div class="rounded-[10px] border border-line bg-surface p-3 md:p-4">
           <dt class="mb-1.5 text-[13px] text-muted">{{ fact.label }}</dt>
           <dd class="font-semibold break-words">{{ fact.value }}</dd>
         </div>
@@ -21,9 +21,10 @@
   </div>
 
   <!-- Full-width split image: pointing at a side expands it over the other.
-       From md up the band keeps the backend picture's proportions, so the whole scene shows. -->
+       From md up the band keeps the backend picture's proportions, so the whole scene shows.
+       Below md the text sits on top and each picture stays in its own half underneath it. -->
   <div
-    class="relative h-[640px] w-full overflow-hidden md:h-[clamp(520px,42.4vw,900px)]"
+    class="relative h-[600px] w-full overflow-hidden md:h-[clamp(520px,42.4vw,900px)]"
     (pointermove)="onPointer($event)"
     (pointerdown)="onPointer($event)"
     (pointerleave)="onLeave($event)"
@@ -31,7 +32,7 @@
     <!-- Frontend side (underneath): no background of its own, so the sky behind the section shows through. -->
     <div class="absolute inset-0">
       <div
-        class="absolute bottom-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 md:top-0 md:left-[46%] md:aspect-square md:h-full md:w-auto"
+        class="absolute bottom-10 left-1/4 size-[220px] -translate-x-1/2 md:top-0 md:bottom-0 md:left-[46%] md:aspect-square md:h-full md:w-auto"
       >
         <img
           ngSrc="images/frontend.png"
@@ -46,14 +47,17 @@
         class="absolute top-6 left-4 flex w-[44%] max-w-[380px] flex-col gap-3 transition-opacity duration-500 md:top-1/2 md:left-16 md:w-[34%] md:-translate-y-1/2 md:gap-4"
         [class.opacity-30]="split() < 50"
       >
-        <p class="font-pixel text-xs">{{ about.frontend.eyebrow }}</p>
+        <p class="font-pixel text-[10px] md:text-xs">{{ about.frontend.eyebrow }}</p>
         <h3 class="text-3xl leading-none font-bold tracking-tighter md:text-6xl">
           {{ about.frontend.title }}
         </h3>
         <p class="hidden text-[17px] leading-relaxed md:block">{{ about.frontend.blurb }}</p>
-        <ul class="flex flex-wrap gap-2 text-sm font-medium" aria-label="Frontend technologies">
+        <ul
+          class="flex flex-wrap gap-1.5 text-xs font-medium md:gap-2 md:text-sm"
+          aria-label="Frontend technologies"
+        >
           @for (tech of about.frontend.tech; track $index) {
-            <li class="rounded-md bg-space px-3 py-2">{{ tech }}</li>
+            <li class="rounded-md bg-space px-2 py-1.5 md:px-3 md:py-2">{{ tech }}</li>
           }
         </ul>
       </div>
@@ -64,33 +68,41 @@
       class="absolute inset-0 bg-[#0d1216] motion-safe:transition-[clip-path] motion-safe:duration-500 motion-safe:ease-out"
       [style.clip-path]="backendClip()"
     >
-      <img
-        ngSrc="images/backend.jpg"
-        fill
-        sizes="100vw"
-        alt="The same developer, tired and unshaven in a hoodie and headphones, at a desk in a dim server room surrounded by racks, cables, monitors and coffee mugs."
-        class="object-cover object-[68%_50%]"
-      />
-      <!-- Darkens the right edge so the text stays readable over the room. -->
-      <div
-        aria-hidden="true"
-        class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(13,18,22,0.85),rgba(13,18,22,0)_55%)] md:bg-[linear-gradient(to_left,rgba(13,18,22,0.94)_10%,rgba(13,18,22,0)_32%)]"
-      ></div>
+      <!-- Below md the room fills only the lower part, leaving the text on the plain dark panel. -->
+      <div class="absolute inset-x-0 bottom-0 h-[330px] md:inset-0 md:h-auto">
+        <img
+          ngSrc="images/backend.jpg"
+          fill
+          sizes="100vw"
+          alt="The same developer, tired and unshaven in a hoodie and headphones, at a desk in a dim server room surrounded by racks, cables, monitors and coffee mugs."
+          class="object-cover object-[60%_50%] md:object-[68%_50%]"
+        />
+        <!-- Fades the room into the panel (top on small screens, right edge from md up) so the text stays readable. -->
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 bg-[linear-gradient(to_bottom,#0d1216,rgba(13,18,22,0)_30%)] md:bg-[linear-gradient(to_left,rgba(13,18,22,0.94)_10%,rgba(13,18,22,0)_32%)]"
+        ></div>
+      </div>
 
       <div
         class="absolute top-6 right-4 flex w-[44%] max-w-[380px] flex-col gap-3 transition-opacity duration-500 md:top-1/2 md:right-10 md:w-[21%] md:-translate-y-1/2 md:gap-4"
         [class.opacity-30]="split() > 50"
       >
-        <p class="font-pixel text-xs text-gold">{{ about.backend.eyebrow }}</p>
+        <p class="font-pixel text-[10px] text-gold md:text-xs">{{ about.backend.eyebrow }}</p>
         <h3 class="text-3xl leading-none font-bold tracking-tighter md:text-6xl">
           {{ about.backend.title }}
         </h3>
         <p class="hidden text-[17px] leading-relaxed text-cream-dim md:block">
           {{ about.backend.blurb }}
         </p>
-        <ul class="flex flex-wrap gap-2 text-sm font-medium" aria-label="Backend technologies">
+        <ul
+          class="flex flex-wrap gap-1.5 text-xs font-medium md:gap-2 md:text-sm"
+          aria-label="Backend technologies"
+        >
           @for (tech of about.backend.tech; track $index) {
-            <li class="rounded-md border border-soil-light bg-soil px-3 py-2">{{ tech }}</li>
+            <li class="rounded-md border border-soil-light bg-soil px-2 py-1.5 md:px-3 md:py-2">
+              {{ tech }}
+            </li>
           }
         </ul>
       </div>

@@ -13,8 +13,11 @@ import { SpaceIcon } from '../shared/space-icon';
       aria-labelledby="projects-title"
       class="sky-clouds relative overflow-hidden px-6 py-24 md:px-16"
     >
-      <app-cloud class="absolute top-[120px] right-[5%] w-[260px] opacity-90" />
-      <app-cloud class="absolute top-[52%] -left-[60px] w-[320px] opacity-90" />
+      <!-- On small screens the first cloud sits in the padding above the heading, clear of the text. -->
+      <app-cloud
+        class="absolute top-3 -right-8 w-[180px] opacity-90 md:top-[120px] md:right-[5%] md:w-[260px]"
+      />
+      <app-cloud class="absolute top-[52%] -left-[60px] w-[320px] opacity-90 max-md:hidden" />
       <app-cloud class="absolute right-[18%] bottom-3.5 w-[220px] opacity-90" />
       <div class="relative mx-auto flex max-w-[1312px] flex-col gap-12">
         <div class="flex flex-wrap items-end justify-between gap-6">
