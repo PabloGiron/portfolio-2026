@@ -1,8 +1,7 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { email, form, FormField, required, submit } from '@angular/forms/signals';
 import { CONTACT, PROFILE } from '../content';
-import { OfficeScene } from '../shared/office-scene';
 
 interface ContactMessage {
   name: string;
@@ -12,7 +11,7 @@ interface ContactMessage {
 
 @Component({
   selector: 'app-contact',
-  imports: [FormField, OfficeScene],
+  imports: [FormField, NgOptimizedImage],
   templateUrl: './contact.html',
   host: { class: 'block' },
 })

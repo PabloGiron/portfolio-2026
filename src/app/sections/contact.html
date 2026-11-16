@@ -1,15 +1,23 @@
-<!-- The page lands indoors: the whole section is the office, under its roof. -->
-<section id="contact" aria-labelledby="contact-title" class="bg-wall">
-  <svg
-    aria-hidden="true"
-    viewBox="0 0 1440 64"
-    preserveAspectRatio="none"
-    class="block h-12 w-full bg-sky-light md:h-16"
-  >
-    <polygon points="0,44 720,0 1440,44 1440,64 0,64" fill="#142026" />
-  </svg>
+<!-- The page lands in the office: the room illustration is the section's background. -->
+<section
+  id="contact"
+  aria-labelledby="contact-title"
+  class="sky-dusk on-light relative overflow-hidden text-space"
+>
+  <!-- Anchored to the bottom, so the room shows below the contact form. -->
+  <div class="pointer-events-none absolute inset-x-0 bottom-6 h-[400px] md:bottom-10 md:h-[720px]">
+    <img
+      ngSrc="images/setup.png"
+      fill
+      sizes="100vw"
+      alt="Isometric illustration of a home office: a standing desk with a monitor and a laptop, an office chair, a window with blinds and a wooden floor."
+      class="object-contain object-bottom drop-shadow-[0_28px_26px_rgba(32,19,10,0.4)]"
+    />
+  </div>
 
-  <div class="mx-auto flex max-w-[1440px] flex-wrap gap-16 px-6 pt-20 pb-16 md:px-16">
+  <div
+    class="relative mx-auto flex max-w-[1440px] flex-wrap gap-16 px-6 pt-24 pb-[340px] md:px-16 md:pb-[420px]"
+  >
     <div class="flex min-w-0 flex-[1_1_440px] flex-col gap-6">
       <p class="font-pixel text-[13px]">No. 004 · Contact · Alt 0 m · Landed</p>
       <h2 id="contact-title" class="text-5xl leading-[1.05] font-bold tracking-tighter md:text-[64px]">
@@ -17,7 +25,7 @@
       </h2>
 
       <div
-        class="relative max-w-[520px] rounded-xl border-2 border-cream bg-surface px-7 py-6 shadow-[inset_0_0_0_4px_var(--color-surface),inset_0_0_0_5px_var(--color-steel)]"
+        class="relative max-w-[520px] rounded-xl border-2 border-space bg-surface px-7 py-6 text-cream shadow-[inset_0_0_0_4px_var(--color-surface),inset_0_0_0_5px_var(--color-steel)]"
       >
         <p class="text-[19px] leading-relaxed">{{ contact.pitch }}</p>
         <svg aria-hidden="true" width="14" height="10" viewBox="0 0 14 10" class="absolute right-5 bottom-3.5">
@@ -25,7 +33,7 @@
         </svg>
       </div>
 
-      <ul class="flex max-w-[520px] flex-col text-[17px] font-semibold">
+      <ul class="flex max-w-[520px] flex-col gap-1.5 text-[17px] font-semibold text-cream">
         <li>
           <a
             [href]="'mailto:' + profile.email"
@@ -39,7 +47,7 @@
         </li>
         @for (link of contact.links; track link.label) {
           <li>
-            <a [href]="link.url" class="flex min-h-13 items-center pr-4 pl-10 hover:text-sky">{{
+            <a [href]="link.url" class="flex min-h-13 items-center rounded-lg bg-surface pr-4 pl-10 hover:text-sky">{{
               link.label
             }}</a>
           </li>
@@ -49,7 +57,7 @@
 
     <form
       novalidate
-      class="flex min-w-0 max-w-[560px] flex-[1_1_420px] flex-col gap-5 self-start rounded-[14px] border border-line bg-surface p-6 md:p-8"
+      class="flex min-w-0 max-w-[560px] flex-[1_1_420px] flex-col gap-5 self-start rounded-[14px] border border-space bg-surface p-6 text-cream md:p-8"
       (submit)="onSubmit($event)"
     >
       <div class="flex flex-col gap-2">
@@ -117,5 +125,4 @@
     </form>
   </div>
 
-  <app-office-scene />
 </section>

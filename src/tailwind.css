@@ -32,7 +32,10 @@
   --color-grass-light: #7aa86a; /* sunlit facets */
   --color-grass-dark: #3f6f4a; /* near ground, footer */
   --color-cloud: #f4f7ea;
-  --color-wall: #24404f; /* the office wall behind "Let's talk" */
+  --color-dusk-violet: #7d82a8; /* the blue hour, where day starts turning to evening */
+  --color-dusk-rose: #eeb999; /* sunset glow, where projects ends and Let's talk begins */
+  --color-dusk: #f6dcb9; /* warm evening sky behind the office */
+  --color-dusk-deep: #f0c594; /* the same sky at the horizon */
 
   /* Type */
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
@@ -70,6 +73,11 @@
   :focus-visible {
     outline: 2px solid var(--color-sky);
     outline-offset: 3px;
+  }
+
+  /* Sections with a light background need a dark focus ring. */
+  .on-light :focus-visible {
+    outline-color: var(--color-space);
   }
 
   section[id] {
@@ -130,12 +138,25 @@
     0 0;
 }
 
-/* Selected projects: down through the clouds into daylight. */
+/* Selected projects: down through the clouds as the sun sets. The blue of
+   the upper sky turns violet and then to a warm sunset glow. */
 @utility sky-clouds {
   background-color: var(--color-sky-soft);
   background-image: linear-gradient(
     var(--color-sky-soft) 0,
     var(--color-sky-soft) 18%,
-    var(--color-sky-light) 100%
+    var(--color-dusk-violet) 58%,
+    var(--color-dusk-rose) 100%
+  );
+}
+
+/* Let's talk: landing at dusk. It continues the sunset from the projects
+   section and matches the evening light inside the office illustration. */
+@utility sky-dusk {
+  background-color: var(--color-dusk-deep);
+  background-image: linear-gradient(
+    var(--color-dusk-rose) 0,
+    var(--color-dusk) 45%,
+    var(--color-dusk-deep) 100%
   );
 }
