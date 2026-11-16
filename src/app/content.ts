@@ -96,7 +96,8 @@ export const ABOUT = {
 } as const;
 
 export const EXPERIENCE = {
-  summary: '[ONE OR TWO SENTENCES SUMMING UP YOUR CAREER PATH.]',
+  summary:
+    'Software engineer from Guatemala. I started in backend with Java and Spring Boot, moved into DevOps running Kubernetes clusters, and now build banking apps end to end as a fullstack developer.',
   jobs: [
     {
       route: 'Route 03 · Current',
