@@ -19,8 +19,8 @@ import { SiteNav } from './shared/site-nav';
     <app-site-nav />
     <main id="main">
       <app-hero />
-      <app-about />
       <app-experience />
+      <app-about />
       <app-projects />
       <app-contact />
     </main>

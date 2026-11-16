@@ -1,24 +1,34 @@
 import { Component } from '@angular/core';
 import { PROJECTS } from '../content';
+import { Cloud } from '../shared/cloud';
 import { SectionHeading } from '../shared/section-heading';
 import { SpaceIcon } from '../shared/space-icon';
 
 @Component({
   selector: 'app-projects',
-  imports: [SectionHeading, SpaceIcon],
+  imports: [SectionHeading, SpaceIcon, Cloud],
   template: `
-    <section id="projects" aria-labelledby="projects-title" class="px-6 py-24 md:px-16">
-      <div class="mx-auto flex max-w-[1312px] flex-col gap-12">
+    <section
+      id="projects"
+      aria-labelledby="projects-title"
+      class="sky-clouds relative overflow-hidden px-6 py-24 md:px-16"
+    >
+      <app-cloud class="absolute top-[120px] right-[5%] w-[260px] opacity-90" />
+      <app-cloud class="absolute top-[52%] -left-[60px] w-[320px] opacity-90" />
+      <app-cloud class="absolute right-[18%] bottom-3.5 w-[220px] opacity-90" />
+      <div class="relative mx-auto flex max-w-[1312px] flex-col gap-12">
         <div class="flex flex-wrap items-end justify-between gap-6">
           <app-section-heading
             index="003"
             label="Projects"
             title="Selected projects"
             headingId="projects-title"
+            altitude="3 km"
+            [pill]="true"
           />
           <a
             [href]="projects.allUrl"
-            class="inline-flex min-h-12 items-center font-semibold underline underline-offset-4 hover:text-sky"
+            class="inline-flex min-h-12 items-center rounded-lg bg-space px-[18px] font-semibold hover:text-sky"
             >All projects on GitHub</a
           >
         </div>

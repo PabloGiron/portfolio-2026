@@ -6,12 +6,17 @@ import { SectionHeading } from '../shared/section-heading';
   selector: 'app-experience',
   imports: [SectionHeading],
   template: `
-    <section id="experience" aria-labelledby="experience-title" class="px-6 py-24 md:px-16">
+    <section
+      id="experience"
+      aria-labelledby="experience-title"
+      class="sky-orbit px-6 pt-24 pb-56 md:px-16"
+    >
       <div class="mx-auto flex max-w-[1312px] flex-wrap gap-16">
         <div class="flex min-w-0 flex-[1_1_320px] flex-col gap-6">
           <app-section-heading
-            index="002"
+            index="001"
             label="Experience"
+            altitude="400 km"
             title="The journey so far"
             headingId="experience-title"
           />

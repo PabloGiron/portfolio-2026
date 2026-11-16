@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { email, form, FormField, required, submit } from '@angular/forms/signals';
 import { CONTACT, PROFILE } from '../content';
+import { OfficeScene } from '../shared/office-scene';
 
 interface ContactMessage {
   name: string;
@@ -11,7 +12,7 @@ interface ContactMessage {
 
 @Component({
   selector: 'app-contact',
-  imports: [FormField],
+  imports: [FormField, OfficeScene],
   templateUrl: './contact.html',
   host: { class: 'block' },
 })

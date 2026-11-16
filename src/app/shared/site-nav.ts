@@ -10,9 +10,9 @@ import { PROFILE } from '../content';
       <a href="#top" class="font-display text-xl font-bold no-underline">{{ profile.name }}</a>
       <nav aria-label="Sections">
         <ul class="flex flex-wrap items-center gap-x-8 gap-y-2 text-[15px] font-medium">
-          <li><a class="inline-block py-3 no-underline hover:text-sky" href="#about">About</a></li>
+          <li><a class="inline-block py-3 no-underline hover:text-sky" href="#experience">Experience</a></li>
           <li>
-            <a class="inline-block py-3 no-underline hover:text-sky" href="#experience">Experience</a>
+            <a class="inline-block py-3 no-underline hover:text-sky" href="#about">About</a>
           </li>
           <li>
             <a class="inline-block py-3 no-underline hover:text-sky" href="#projects">Projects</a>

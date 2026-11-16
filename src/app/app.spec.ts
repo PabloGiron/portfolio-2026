@@ -33,6 +33,11 @@ describe('App', () => {
     }
   });
 
+  it('should order the sections as a descent from space to the ground', () => {
+    const ids = Array.from(render().querySelectorAll('main > * > section')).map((s) => s.id);
+    expect(ids).toEqual(['top', 'experience', 'about', 'projects', 'contact']);
+  });
+
   it('should move the About divider when the slider changes', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
