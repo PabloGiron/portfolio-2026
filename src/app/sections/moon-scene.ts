@@ -23,6 +23,13 @@ import type * as Three from 'three';
  */
 export const HERO_MODEL_URL: string | null = 'models/space-explorer.glb';
 
+/**
+ * How the model is turned at rest, in radians. The astronaut is modelled in
+ * profile, facing left; this swings him round so he half-faces the visitor.
+ * 0 is pure profile, about 1.57 would be facing straight out of the screen.
+ */
+const HERO_MODEL_YAW = 0.6;
+
 /** How far the scene may turn towards the pointer, in radians. */
 const MAX_TURN = 0.45;
 const MAX_TILT = 0.2;
@@ -114,8 +121,9 @@ export class MoonScene {
     const camera = new THREE.PerspectiveCamera(32, 400 / 420, 0.1, 50);
     camera.position.set(0, 0, 7.6);
 
-    scene.add(new THREE.HemisphereLight(0xe9f0c9, 0x142026, 1.3));
-    const sun = new THREE.DirectionalLight(0xffffff, 1.7);
+    // Neutral white light, so the model's painted colours are not tinted.
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xb8c4cc, 2.2));
+    const sun = new THREE.DirectionalLight(0xffffff, 1.1);
     sun.position.set(-2.5, 3, 4);
     scene.add(sun);
 
@@ -130,6 +138,7 @@ export class MoonScene {
     }
     if (loaded) {
       stage.add(loaded.object);
+      stage.rotation.y = HERO_MODEL_YAW;
     } else {
       standIn = buildStandIn(THREE);
       stage.add(standIn.root);
@@ -169,7 +178,8 @@ export class MoonScene {
       const time = clock.getElapsedTime();
 
       // The visitor can nudge the scene, but only within a small range.
-      stage.rotation.y += (this.pointer.x * MAX_TURN - stage.rotation.y) * 0.06;
+      const restYaw = loaded ? HERO_MODEL_YAW : 0;
+      stage.rotation.y += (restYaw + this.pointer.x * MAX_TURN - stage.rotation.y) * 0.06;
       stage.rotation.x += (this.pointer.y * MAX_TILT - stage.rotation.x) * 0.06;
       stage.position.y = Math.sin(time * 0.6) * 0.06;
 
@@ -225,6 +235,23 @@ export class MoonScene {
       gltf.scene.scale.setScalar(scale);
       const holder = new THREE.Group();
       holder.add(gltf.scene);
+
+      // Generated models come with metal and gloss maps that make everything
+      // shiny and darken it under simple lights. The look here is matte and
+      // painted, so those maps are dropped and only colour and relief stay.
+      gltf.scene.traverse((object) => {
+        const material = (object as Three.Mesh).material;
+        for (const item of Array.isArray(material) ? material : material ? [material] : []) {
+          const surface = item as Three.MeshStandardMaterial;
+          if (surface.isMeshStandardMaterial) {
+            surface.metalness = 0;
+            surface.metalnessMap = null;
+            surface.roughness = 1;
+            surface.roughnessMap = null;
+            surface.needsUpdate = true;
+          }
+        }
+      });
 
       let mixer: Three.AnimationMixer | null = null;
       if (gltf.animations.length > 0) {
