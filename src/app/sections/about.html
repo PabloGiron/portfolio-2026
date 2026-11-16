@@ -20,9 +20,10 @@
     </dl>
   </div>
 
-  <!-- Full-width split image: pointing at a side expands it over the other. -->
+  <!-- Full-width split image: pointing at a side expands it over the other.
+       From md up the band keeps the backend picture's proportions, so the whole scene shows. -->
   <div
-    class="relative h-[640px] w-full overflow-hidden"
+    class="relative h-[640px] w-full overflow-hidden md:h-[clamp(520px,42.4vw,900px)]"
     (pointermove)="onPointer($event)"
     (pointerdown)="onPointer($event)"
     (pointerleave)="onLeave($event)"
@@ -30,7 +31,7 @@
     <!-- Frontend side (underneath): no background of its own, so the sky behind the section shows through. -->
     <div class="absolute inset-0">
       <div
-        class="absolute bottom-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 md:top-0 md:left-[46%] md:h-full md:w-[640px]"
+        class="absolute bottom-0 left-1/2 h-[400px] w-[400px] -translate-x-1/2 md:top-0 md:left-[46%] md:aspect-square md:h-full md:w-auto"
       >
         <img
           ngSrc="images/frontend.png"
