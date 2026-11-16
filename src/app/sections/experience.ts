@@ -51,11 +51,13 @@ import { SectionHeading } from '../shared/section-heading';
                 </p>
                 <h3 class="text-2xl font-bold">{{ job.title }}</h3>
                 <p class="font-medium text-cream-dim">{{ job.company }} · {{ job.location }}</p>
-                <ul class="mt-1 flex list-disc flex-col gap-1.5 pl-5 leading-relaxed text-cream-dim">
-                  @for (item of job.highlights; track $index) {
-                    <li>{{ item }}</li>
-                  }
-                </ul>
+                @if (job.highlights.length > 0) {
+                  <ul class="mt-1 flex list-disc flex-col gap-1.5 pl-5 leading-relaxed text-cream-dim">
+                    @for (item of job.highlights; track $index) {
+                      <li>{{ item }}</li>
+                    }
+                  </ul>
+                }
                 @if (job.tech.length > 0) {
                   <ul class="mt-1.5 flex flex-wrap gap-2 text-[13px] font-medium" aria-label="Technologies">
                     @for (tech of job.tech; track $index) {
