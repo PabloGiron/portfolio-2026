@@ -1,6 +1,12 @@
-<section id="top" aria-labelledby="hero-title" class="sky-space flex min-h-[780px] flex-col">
+<section
+  id="top"
+  aria-labelledby="hero-title"
+  class="sky-space relative flex min-h-[780px] flex-col overflow-hidden"
+>
+  <!-- A quiet nod to the old portfolio's fox logo, drawn in the stars. -->
+  <app-fox-constellation class="absolute top-6 left-[37%] w-[240px] opacity-80 max-md:hidden" />
   <div
-    class="mx-auto flex w-full max-w-[1440px] grow flex-wrap items-center gap-12 px-6 pt-8 pb-16 md:px-16"
+    class="relative mx-auto flex w-full max-w-[1440px] grow flex-wrap items-center gap-12 px-6 pt-8 pb-16 md:px-16"
   >
     <div class="flex min-w-0 flex-[1_1_480px] flex-col gap-7">
       <ul class="flex flex-wrap gap-3 font-pixel text-[13px]">
