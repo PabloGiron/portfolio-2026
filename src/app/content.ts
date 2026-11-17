@@ -13,7 +13,10 @@ export type SpaceIconName =
   | 'gamepad'
   | 'shoe'
   | 'book'
-  | 'dumbbell';
+  | 'dumbbell'
+  | 'webpage'
+  | 'phone'
+  | 'cart';
 
 export interface Fact {
   readonly label: string;
@@ -54,7 +57,8 @@ export interface Project {
   readonly name: string;
   readonly description: string;
   readonly tech: readonly string[];
-  readonly liveUrl: string;
+  /** Left out when the project has no public site; the card then shows only the source link. */
+  readonly liveUrl?: string;
   readonly sourceUrl: string;
   readonly icon: SpaceIconName;
   /** Tailwind background class for the card's picture area. */
@@ -67,12 +71,12 @@ export interface SocialLink {
 }
 
 export const PROFILE = {
-  name: 'Pablo Giron',
+  name: 'Pablo Girón',
   role: 'Fullstack developer',
   level: 'Lv. 29',
   city: 'GT-09',
   tagline:
-    'Fullstack developer. Out here, anything is possible — I build web pages with Angular, Spring Boot and Kubernetes.',
+    'Fullstack developer. I build web pages with Angular and Spring Boot, and I can also manage Kubernetes clusters.',
   email: 'you@example.com',
   cvUrl: '#',
   year: '[YEAR]',
@@ -151,31 +155,32 @@ export const PROJECTS = {
   allUrl: '#',
   items: [
     {
-      name: '[PROJECT NAME]',
-      description: '[WHAT IT IS, THE PROBLEM IT SOLVES AND YOUR PART IN IT.]',
-      tech: ['Angular', '[TECH]', '[TECH]'],
-      liveUrl: '#',
-      sourceUrl: '#',
-      icon: 'planet',
+      name: 'First portfolio',
+      description:
+        'My first portfolio, designed and built from scratch with React and Sass: an intro, my skills, projects and hobbies on a single page. Its fox logo now lives in the stars at the top of this one.',
+      tech: ['React', 'Sass', 'Material UI'],
+      liveUrl: 'https://pablogiron.github.io/portfolio/',
+      sourceUrl: 'https://github.com/PabloGiron/portfolio',
+      icon: 'webpage',
+      tone: 'bg-[#0f2836]',
+    },
+    {
+      name: 'Paladins App',
+      description:
+        "A mobile app that shows a summary of a Paladins player's profile, built with Flutter on top of the game's API.",
+      tech: ['Flutter', 'Dart', 'Provider'],
+      sourceUrl: 'https://github.com/PabloGiron/paladins_app',
+      icon: 'phone',
       tone: 'bg-[#1a3f52]',
     },
     {
-      name: '[PROJECT NAME]',
-      description: '[WHAT IT IS, THE PROBLEM IT SOLVES AND YOUR PART IN IT.]',
-      tech: ['[TECH]', '[TECH]'],
-      liveUrl: '#',
-      sourceUrl: '#',
-      icon: 'sun',
+      name: 'Pro-tech Web',
+      description:
+        'An e-commerce website built as a team of eight: an Angular storefront on top of a Node.js backend.',
+      tech: ['Angular', 'Node.js', 'TypeScript'],
+      sourceUrl: 'https://github.com/edvinfelipe/paginaweb',
+      icon: 'cart',
       tone: 'bg-soil',
-    },
-    {
-      name: '[PROJECT NAME]',
-      description: '[WHAT IT IS, THE PROBLEM IT SOLVES AND YOUR PART IN IT.]',
-      tech: ['[TECH]', '[TECH]'],
-      liveUrl: '#',
-      sourceUrl: '#',
-      icon: 'satellite',
-      tone: 'bg-[#0f2836]',
     },
   ] as readonly Project[],
 } as const;

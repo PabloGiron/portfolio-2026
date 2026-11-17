@@ -55,12 +55,14 @@ import { SpaceIcon } from '../shared/space-icon';
                     }
                   </ul>
                   <p class="mt-auto flex gap-6 text-[15px] font-semibold">
-                    <a
-                      [href]="project.liveUrl"
-                      class="py-3 underline underline-offset-4 hover:text-sky"
-                      [attr.aria-label]="'Live site: ' + project.name"
-                      >Live site</a
-                    >
+                    @if (project.liveUrl; as liveUrl) {
+                      <a
+                        [href]="liveUrl"
+                        class="py-3 underline underline-offset-4 hover:text-sky"
+                        [attr.aria-label]="'Live site: ' + project.name"
+                        >Live site</a
+                      >
+                    }
                     <a
                       [href]="project.sourceUrl"
                       class="py-3 underline underline-offset-4 hover:text-sky"

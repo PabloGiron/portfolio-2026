@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { SpaceIconName } from '../content';
 
-/** Small low-poly icon: space objects and hobbies. Decorative: always hidden from assistive tech. */
+/** Small low-poly icon: space objects, hobbies, a web page, a phone and a cart. Decorative: always hidden from assistive tech. */
 @Component({
   selector: 'app-space-icon',
   template: `
@@ -79,6 +79,33 @@ import { SpaceIconName } from '../content';
             <rect x="2" y="15" width="5" height="14" fill="#9cc3d8" />
             <rect x="37" y="15" width="5" height="14" fill="#9cc3d8" />
           </g>
+        }
+        @case ('webpage') {
+          <rect x="3" y="7" width="38" height="30" fill="#e9f0c9" />
+          <rect x="3" y="7" width="38" height="6" fill="#9cc3d8" />
+          <circle cx="7" cy="10" r="1.2" fill="#3b657a" />
+          <circle cx="11" cy="10" r="1.2" fill="#3b657a" />
+          <circle cx="13" cy="21" r="4.5" fill="#e9c46a" />
+          <rect x="21" y="17.5" width="15" height="2.5" fill="#3b657a" />
+          <rect x="21" y="22" width="10" height="2.5" fill="#9fb6c2" />
+          <rect x="7" y="29" width="8" height="5" fill="#c8d3bd" />
+          <rect x="18" y="29" width="8" height="5" fill="#c8d3bd" />
+          <rect x="29" y="29" width="8" height="5" fill="#c8d3bd" />
+        }
+        @case ('phone') {
+          <rect x="11" y="3" width="22" height="38" rx="3" fill="#e9f0c9" />
+          <rect x="13.5" y="8" width="17" height="26" fill="#3b657a" />
+          <circle cx="22" cy="16" r="4" fill="#e9c46a" />
+          <rect x="16" y="23" width="12" height="2.5" fill="#e9f0c9" />
+          <rect x="16" y="27.5" width="8" height="2.5" fill="#9cc3d8" />
+          <rect x="19" y="36.5" width="6" height="1.8" fill="#9fb6c2" />
+        }
+        @case ('cart') {
+          <polyline points="2,8 9,8 14,28 36,28" fill="none" stroke="#e9f0c9" stroke-width="2.5" />
+          <polygon points="10.5,12 41,12 36,24 13.5,24" fill="#e9c46a" />
+          <polygon points="10.5,12 26,12 24,24 13.5,24" fill="#b8923a" />
+          <circle cx="17" cy="35" r="3.5" fill="#e9f0c9" />
+          <circle cx="32" cy="35" r="3.5" fill="#e9f0c9" />
         }
       }
     </svg>
