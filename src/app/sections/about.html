@@ -68,19 +68,21 @@
       class="absolute inset-0 bg-[#0d1216] motion-safe:transition-[clip-path] motion-safe:duration-500 motion-safe:ease-out"
       [style.clip-path]="backendClip()"
     >
-      <!-- Below md the room fills only the lower part, leaving the text on the plain dark panel. -->
-      <div class="absolute inset-x-0 bottom-0 h-[330px] md:inset-0 md:h-auto">
+      <!-- A square picture, like the astronaut: it stays in the backend half, just right of the divider. -->
+      <div
+        class="absolute bottom-0 left-3/4 size-[330px] -translate-x-1/2 md:top-0 md:left-[59%] md:aspect-square md:h-full md:w-auto"
+      >
         <img
           ngSrc="images/backend.jpg"
           fill
-          sizes="100vw"
-          alt="The same developer, tired and unshaven in a hoodie and headphones, at a desk in a dim server room surrounded by racks, cables, monitors and coffee mugs."
-          class="object-cover object-[60%_50%] md:object-[68%_50%]"
+          sizes="(min-width: 768px) 50vw, 100vw"
+          alt="The same developer, tired but smiling in a dark hoodie, standing in a dim server room lit by a glowing monitor, with racks and loose cables all around."
+          class="object-cover"
         />
-        <!-- Fades the room into the panel (top on small screens, right edge from md up) so the text stays readable. -->
+        <!-- Fades the picture's edges into the dark panel around it. -->
         <div
           aria-hidden="true"
-          class="absolute inset-0 bg-[linear-gradient(to_bottom,#0d1216,rgba(13,18,22,0)_30%)] md:bg-[linear-gradient(to_left,rgba(13,18,22,0.94)_10%,rgba(13,18,22,0)_32%)]"
+          class="absolute inset-0 bg-[linear-gradient(to_right,#0d1216,rgba(13,18,22,0)_18%,rgba(13,18,22,0)_82%,#0d1216),linear-gradient(to_bottom,#0d1216,rgba(13,18,22,0)_14%)]"
         ></div>
       </div>
 
