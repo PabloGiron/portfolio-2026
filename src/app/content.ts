@@ -69,7 +69,7 @@ export const PROFILE = {
 } as const;
 
 export const ABOUT = {
-  bio: '[WHO YOU ARE, WHAT YOU DO TODAY, HOW YOU WORK AND WHAT YOU WANT NEXT.]',
+  bio: "Hi, I'm Pablo. I've been working as a software developer for over 5 years. I like working closely with my team, learning from others and passing on what I know. I'm always up for the challenge of a new project.",
   facts: [
     { label: 'Based in', value: 'GT-09' },
     { label: 'Experience', value: '5 years' },
