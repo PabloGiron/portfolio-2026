@@ -89,10 +89,10 @@ export const ABOUT = {
     tech: ['Spring Boot', 'Spring Batch', 'Micronaut', 'Kubernetes'],
   } as StackSide,
   hobbies: [
-    { name: '[HOBBY]', icon: 'planet' },
-    { name: '[HOBBY]', icon: 'rocket' },
-    { name: '[HOBBY]', icon: 'moon' },
-    { name: '[HOBBY]', icon: 'star' },
+    { name: 'Video games', icon: 'planet' },
+    { name: 'Running', icon: 'rocket' },
+    { name: 'Reading', icon: 'moon' },
+    { name: 'Gym', icon: 'star' },
   ] as readonly Hobby[],
 } as const;
 
