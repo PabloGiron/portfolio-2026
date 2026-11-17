@@ -31,8 +31,10 @@ import { SpaceIcon } from '../shared/space-icon';
           />
           <a
             [href]="projects.allUrl"
+            target="_blank"
+            rel="noopener noreferrer"
             class="inline-flex min-h-12 items-center rounded-lg bg-space px-[18px] font-semibold hover:text-sky"
-            >All projects on GitHub</a
+            >All projects on GitHub<span class="sr-only"> (opens in a new tab)</span></a
           >
         </div>
 
@@ -58,15 +60,19 @@ import { SpaceIcon } from '../shared/space-icon';
                     @if (project.liveUrl; as liveUrl) {
                       <a
                         [href]="liveUrl"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         class="py-3 underline underline-offset-4 hover:text-sky"
-                        [attr.aria-label]="'Live site: ' + project.name"
+                        [attr.aria-label]="'Live site: ' + project.name + ' (opens in a new tab)'"
                         >Live site</a
                       >
                     }
                     <a
                       [href]="project.sourceUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       class="py-3 underline underline-offset-4 hover:text-sky"
-                      [attr.aria-label]="'Source code: ' + project.name"
+                      [attr.aria-label]="'Source code: ' + project.name + ' (opens in a new tab)'"
                       >Source</a
                     >
                   </p>

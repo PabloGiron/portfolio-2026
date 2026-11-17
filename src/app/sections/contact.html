@@ -47,9 +47,13 @@
         </li>
         @for (link of contact.links; track link.label) {
           <li>
-            <a [href]="link.url" class="flex min-h-13 items-center rounded-lg bg-surface pr-4 pl-10 hover:text-sky">{{
-              link.label
-            }}</a>
+            <a
+              [href]="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex min-h-13 items-center rounded-lg bg-surface pr-4 pl-10 hover:text-sky"
+              >{{ link.label }}<span class="sr-only"> (opens in a new tab)</span></a
+            >
           </li>
         }
       </ul>
