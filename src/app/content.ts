@@ -59,7 +59,7 @@ export interface SocialLink {
 export const PROFILE = {
   name: 'Pablo Giron',
   role: 'Fullstack developer',
-  level: 'Lv. [XX]',
+  level: 'Lv. 29',
   city: 'GT-09',
   tagline:
     'Fullstack developer. Out here, anything is possible — I build web pages with Angular, Spring Boot and Kubernetes.',
@@ -78,8 +78,8 @@ export const ABOUT = {
   frontend: {
     eyebrow: 'Boots on the surface',
     title: 'frontend',
-    blurb: 'The one everybody watches live. [WHAT YOU LOVE ABOUT BUILDING INTERFACES.]',
-    tech: ['Angular', 'TypeScript', 'Three.js', '[TECH]', '[TECH]'],
+    blurb: 'The one everybody watches live. I love building intuitive interfaces that make life easier.',
+    tech: ['Angular', 'TypeScript', 'Three.js', 'HTML', 'CSS'],
   } as StackSide,
   backend: {
     eyebrow: 'Mission control, 03:00',
