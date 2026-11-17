@@ -77,7 +77,7 @@ export const PROFILE = {
   city: 'GT-09',
   tagline:
     'Fullstack developer. I build web pages with Angular and Spring Boot, and I can also manage Kubernetes clusters.',
-  email: 'you@example.com',
+  email: 'p4blogiron@gmail.com',
   cvUrl: '#',
   year: '[YEAR]',
 } as const;
@@ -152,7 +152,7 @@ export const EXPERIENCE = {
 } as const;
 
 export const PROJECTS = {
-  allUrl: '#',
+  allUrl: 'https://github.com/PabloGiron',
   items: [
     {
       name: 'First portfolio',
@@ -186,9 +186,12 @@ export const PROJECTS = {
 } as const;
 
 export const CONTACT = {
-  pitch: "Have a role or a project in mind? Send a signal — I'm open to [WHAT YOU ARE OPEN TO].",
+  pitch: "Have a role or a project in mind? Send a signal — I'm open to building your next web page.",
   links: [
-    { label: 'LinkedIn', url: '#' },
-    { label: 'GitHub', url: '#' },
+    {
+      label: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/juan-pablo-gir%C3%B3n-l%C3%B3pez-7362b2224/',
+    },
+    { label: 'GitHub', url: 'https://github.com/PabloGiron' },
   ] as readonly SocialLink[],
 } as const;
