@@ -16,9 +16,6 @@ import type * as Three from 'three';
  *
  *   'models/space-explorer.glb'  your own astronaut, reduced from the raw model
  *                                by blender/space-explorer/optimize.py
- *   'models/astronaut.glb'  falling astronaut by wallmasterr (CC BY 4.0, see
- *                           public/models/CREDITS.md), with an idle animation
- *   'models/hero.glb'       astronaut resting in the moon, from blender/hero.blend
  *   null                    the stand-in scene built in code below
  */
 export const HERO_MODEL_URL: string | null = 'models/space-explorer.glb';

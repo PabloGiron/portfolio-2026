@@ -79,7 +79,7 @@ export const PROFILE = {
     'Fullstack developer. I build web pages with Angular and Spring Boot, and I can also manage Kubernetes clusters.',
   email: 'p4blogiron@gmail.com',
   cvUrl: '#',
-  year: '[YEAR]',
+  year: String(new Date().getFullYear()),
 } as const;
 
 export const ABOUT = {
