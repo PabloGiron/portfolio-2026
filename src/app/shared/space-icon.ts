@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { SpaceIconName } from '../content';
 
-/** Small low-poly space object. Decorative: always hidden from assistive tech. */
+/** Small low-poly icon: space objects and hobbies. Decorative: always hidden from assistive tech. */
 @Component({
   selector: 'app-space-icon',
   template: `
@@ -45,6 +45,40 @@ import { SpaceIconName } from '../content';
           <rect x="27" y="21" width="2" height="2" fill="#e9f0c9" />
           <line x1="22" y1="15" x2="22" y2="8" stroke="#e9f0c9" stroke-width="1.5" />
           <circle cx="22" cy="7" r="2" fill="#e9c46a" />
+        }
+        @case ('gamepad') {
+          <polygon points="5,14 39,14 42,34 34,34 29,27 15,27 10,34 2,34" fill="#e9f0c9" />
+          <polygon points="15,27 29,27 34,34 42,34 41,29 3,29 2,34 10,34" fill="#c8d3bd" />
+          <rect x="9" y="19" width="8" height="2.5" fill="#3b657a" />
+          <rect x="11.75" y="16.25" width="2.5" height="8" fill="#3b657a" />
+          <circle cx="30" cy="18" r="2.2" fill="#e9c46a" />
+          <circle cx="35" cy="22" r="2.2" fill="#3b657a" />
+        }
+        @case ('shoe') {
+          <polygon points="4,12 13,12 20,21 34,25 41,30 41,34 4,34" fill="#e9f0c9" />
+          <polygon points="4,12 10,12 10,34 4,34" fill="#c8d3bd" />
+          <polygon points="17,23 22,22 20,34 15,34" fill="#e9c46a" />
+          <polygon points="24,24 29,24 27,34 22,34" fill="#e9c46a" />
+          <rect x="3" y="34" width="39" height="4" fill="#9cc3d8" />
+        }
+        @case ('book') {
+          <polygon points="3,10 22,14 22,38 3,34" fill="#e9f0c9" />
+          <polygon points="41,10 22,14 22,38 41,34" fill="#c8d3bd" />
+          <g stroke="#3b657a" stroke-width="1.5">
+            <line x1="7" y1="17" x2="18" y2="19.3" />
+            <line x1="7" y1="23" x2="18" y2="25.3" />
+            <line x1="7" y1="29" x2="18" y2="31.3" />
+          </g>
+          <polygon points="30,12.3 35,11.3 35,24 32.5,21.5 30,25" fill="#e9c46a" />
+        }
+        @case ('dumbbell') {
+          <g transform="rotate(-20 22 22)">
+            <rect x="12" y="20" width="20" height="4" fill="#c8d3bd" />
+            <rect x="7" y="11" width="6" height="22" fill="#e9f0c9" />
+            <rect x="31" y="11" width="6" height="22" fill="#e9f0c9" />
+            <rect x="2" y="15" width="5" height="14" fill="#9cc3d8" />
+            <rect x="37" y="15" width="5" height="14" fill="#9cc3d8" />
+          </g>
         }
       }
     </svg>

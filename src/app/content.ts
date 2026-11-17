@@ -3,7 +3,17 @@
  * Replace every [BRACKETED] placeholder with your own details.
  */
 
-export type SpaceIconName = 'planet' | 'rocket' | 'moon' | 'star' | 'sun' | 'satellite';
+export type SpaceIconName =
+  | 'planet'
+  | 'rocket'
+  | 'moon'
+  | 'star'
+  | 'sun'
+  | 'satellite'
+  | 'gamepad'
+  | 'shoe'
+  | 'book'
+  | 'dumbbell';
 
 export interface Fact {
   readonly label: string;
@@ -89,10 +99,10 @@ export const ABOUT = {
     tech: ['Spring Boot', 'Spring Batch', 'Micronaut', 'Kubernetes'],
   } as StackSide,
   hobbies: [
-    { name: 'Video games', icon: 'planet' },
-    { name: 'Running', icon: 'rocket' },
-    { name: 'Reading', icon: 'moon' },
-    { name: 'Gym', icon: 'star' },
+    { name: 'Video games', icon: 'gamepad' },
+    { name: 'Running', icon: 'shoe' },
+    { name: 'Reading', icon: 'book' },
+    { name: 'Gym', icon: 'dumbbell' },
   ] as readonly Hobby[],
 } as const;
 
